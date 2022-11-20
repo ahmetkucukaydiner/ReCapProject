@@ -18,21 +18,21 @@ namespace ConsoleUI
 
 
 
-            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            //BrandManager brandManager = new BrandManager(new EfBrandDal());
 
-            ColorManager colorManager = new ColorManager(new EfColorDal());
+            //ColorManager colorManager = new ColorManager(new EfColorDal());
 
-            CarManager carManager = new CarManager(new EfCarDal());
+            //CarManager carManager = new CarManager(new EfCarDal());
 
-            VeriDondurme();
-            GetCarsByBrandId();
-            GetCarsByColorId();
-            //CarAdd();
-            CarGetAll();
-            CarGetById();
+            //VeriDondurme();
+            //GetCarsByBrandId();
+            //GetCarsByColorId();
+            ////CarAdd();
+            //CarGetAll();
+            //CarGetById();
 
-
-
+            UserManager userManager = new UserManager(new EfUserDal());
+            userManager.Add(new User { Id = 1, FirstName = "Ahmet", LastName = "Aydıner", Email = "ahmetkucukaydiner@gmail.com", Password = "12345a" });
         }
         private static void CarGetById()
         {
