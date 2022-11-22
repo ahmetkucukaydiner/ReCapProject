@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -20,39 +21,39 @@ namespace Business.Concrete
         {
             if (rental.ReturnDate == null)
             {
-                return new ErrorResult("Araç kiralamada olduğu için kiralanamaz. Farklı bir aracı kiralayabilirsiniz.");
+                return new ErrorResult(Messages.ErrorReturnDateNull);
             }
 
             _rentalDal.Add(rental);
-            return new SuccessResult("Kiralama başarılı.");
+            return new SuccessResult(Messages.SuccessAdded);
         }
 
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
 
-            return new SuccessResult("Kiralama silindi");
+            return new SuccessResult(Messages.SuccessDeleted);
         }
 
         public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll());
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.SuccessListed);
         }
 
         public IDataResult<Rental> GetById(int id)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id));
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id), Messages.SuccessFilterById);
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails());
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.SuccessRentalDetails);
         }
 
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
-            return new SuccessResult("Kiralama bilgileri güncellendi.");
+            return new SuccessResult(Messages.SuccessUpdated);
         }
     }
 }
