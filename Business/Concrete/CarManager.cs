@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
-using Core.Utilities;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -17,28 +19,32 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            if (car.Description.Length > 2 && car.DailyPrice > 0)
-            {
-                _carDal.Add(car);
-                return new SuccessResult(Messages.SuccessAdded);
-            }
-            else if (car.Description.Length > 2 && car.DailyPrice < 0)
-            {
-                //Console.WriteLine("Günlük fiyat 0'dan büyük olmalıdır.");
-                return new ErrorResult(Messages.ErorrCarPrice);
-            }
-            else if (car.Description.Length < 2 && car.DailyPrice > 0)
-            {
-                //Console.WriteLine("Araç açıklaması 2 harften uzun olmalıdır.");
-                return new ErrorResult(Messages.ErrorCarNameShort);
-            }
-            else
-            {
-                //Console.WriteLine("Günlük fiyat 0'dan büyük olmalı ve araç açıklaması 2 harften uzun olmalıdır.");
-                return new ErrorResult(Messages.ErrorCarNameAndPrice);
-            }
+            _carDal.Add(car);
+            return new SuccessResult(Messages.SuccessAdded);
+
+            //if (car.Description.Length > 2 && car.DailyPrice > 0)
+            //{
+            //    _carDal.Add(car);
+            //    return new SuccessResult(Messages.SuccessAdded);
+            //}
+            //else if (car.Description.Length > 2 && car.DailyPrice < 0)
+            //{
+            //    //Console.WriteLine("Günlük fiyat 0'dan büyük olmalıdır.");
+            //    return new ErrorResult(Messages.ErorrCarPrice);
+            //}
+            //else if (car.Description.Length < 2 && car.DailyPrice > 0)
+            //{
+            //    //Console.WriteLine("Araç açıklaması 2 harften uzun olmalıdır.");
+            //    return new ErrorResult(Messages.ErrorCarNameShort);
+            //}
+            //else
+            //{
+            //    //Console.WriteLine("Günlük fiyat 0'dan büyük olmalı ve araç açıklaması 2 harften uzun olmalıdır.");
+            //    return new ErrorResult(Messages.ErrorCarNameAndPrice);
+            //}
         }
 
         public IResult Delete(Car car)
@@ -72,6 +78,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id), Messages.SuccessCarFilterByColor);
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
