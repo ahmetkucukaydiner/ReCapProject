@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Business.Constants;
+using Business.Constants.Messages;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
@@ -24,27 +24,6 @@ namespace Business.Concrete
         {
             _carDal.Add(car);
             return new SuccessResult(Messages.SuccessAdded);
-
-            //if (car.Description.Length > 2 && car.DailyPrice > 0)
-            //{
-            //    _carDal.Add(car);
-            //    return new SuccessResult(Messages.SuccessAdded);
-            //}
-            //else if (car.Description.Length > 2 && car.DailyPrice < 0)
-            //{
-            //    //Console.WriteLine("Günlük fiyat 0'dan büyük olmalıdır.");
-            //    return new ErrorResult(Messages.ErorrCarPrice);
-            //}
-            //else if (car.Description.Length < 2 && car.DailyPrice > 0)
-            //{
-            //    //Console.WriteLine("Araç açıklaması 2 harften uzun olmalıdır.");
-            //    return new ErrorResult(Messages.ErrorCarNameShort);
-            //}
-            //else
-            //{
-            //    //Console.WriteLine("Günlük fiyat 0'dan büyük olmalı ve araç açıklaması 2 harften uzun olmalıdır.");
-            //    return new ErrorResult(Messages.ErrorCarNameAndPrice);
-            //}
         }
 
         public IResult Delete(Car car)

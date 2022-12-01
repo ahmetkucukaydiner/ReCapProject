@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Core.Utilities.Helpers.FileHelper;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using System;
@@ -31,8 +32,13 @@ namespace ConsoleUI
             //CarGetAll();
             //CarGetById();
 
-            UserManager userManager = new UserManager(new EfUserDal());
-            userManager.Add(new User { Id = 1, FirstName = "Ahmet", LastName = "Aydıner", Email = "ahmetkucukaydiner@gmail.com", Password = "12345a" });
+            //UserManager userManager = new UserManager(new EfUserDal());
+            //userManager.Add(new User { Id = 1, FirstName = "Ahmet", LastName = "Aydıner", Email = "ahmetkucukaydiner@gmail.com", Password = "12345a" });
+
+            CarImageManager carImageManager = new CarImageManager(new EfCarImageDal(), new FileHelperManager());
+            carImageManager.GetAll();
+
+            Console.ReadLine();
         }
         private static void CarGetById()
         {
