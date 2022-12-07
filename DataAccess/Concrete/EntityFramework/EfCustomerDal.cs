@@ -21,7 +21,6 @@ namespace DataAccess.Concrete.EntityFramework
                                  UserName = u.FirstName,
                                  UserLastName = u.LastName,
                                  UserMail = u.Email,
-                                 UserPassword = u.Password,
                                  CompanyName = c.CompanyName
                              };
 

@@ -22,5 +22,12 @@
 
         public static string ErrorReturnDateNull = "Araç kiralamada olduğu için kiralanamaz. Farklı bir aracı kiralayabilirsiniz.";
         public static string SuccessImageUpload = "Resim yükleme başarılı";
+        public static string AuthorizationDenied = "Yetkiniz yok.";
+        public static string UserRegistered = "Kayıt olundu.";
+        public static string UserNotFound = "Kullanıcı bulunamadı.";
+        public static string SuccessfulLogin = "Giriş başarılı.";
+        public static string PasswordError = "Parola hatalı.";
+        public static string UserAlreadyExists = "Kullanıcı sistemde mevcut.";
+        public static string AccessTokenCreated = "Token oluşturuldu.";
     }
 }
